@@ -1,5 +1,4 @@
 "use client";
-import { handleServerLogin } from '@/server';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -11,17 +10,11 @@ export default function Home() {
 	};
 
 	const handleLogin = () => {
-		handleServerLogin({ username: "Admin", email: "ladmin@localhost", password: "admin" }).then(res => {
-			if (res.user) {
-				router.push('/chat');
-			} else {
-				if (res.code === 403) {
-					router.push('/');
-				} else {
-					alert(res.message);
-				}
-			}
-		});
+		router.push('/profile');
+	};
+
+	const handleDemoLogin = () => {
+		router.push('/profile');
 	};
 
 	return (
@@ -70,6 +63,9 @@ export default function Home() {
 								/>
 								<span className="ml-2 text-sm text-gray-700">Remember me?</span>
 							</label>
+							<a href="#" className="text-sm text-purple-600 hover:underline">
+								Forgot Password?
+							</a>
 						</div>
 
 						<button
@@ -77,6 +73,13 @@ export default function Home() {
 							onClick={handleLogin}
 						>
 							Login
+						</button>
+
+						<button
+							className="mt-4 w-full rounded-md border border-customPurple py-2 text-customPurple hover:bg-purple-100"
+							onClick={handleDemoLogin}
+						>
+							Demo Login
 						</button>
 
 						<div className="mt-4 text-center">

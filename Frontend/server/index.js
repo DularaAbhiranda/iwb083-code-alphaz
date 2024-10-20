@@ -9,7 +9,6 @@ export class WebSocketClient {
 		this.socket = new WebSocket("ws://localhost:21003/ws");
 		this.socket.addEventListener("open", (event) => this.onOpen(event));
 		this.socket.addEventListener("message", (event) => this.onMessage(event));
-		this.readyState = this.socket.readyState;
 	}
 
 	syncMessages(callback) {
@@ -40,18 +39,10 @@ export class WebSocketClient {
 		this.socket.send(JSON.stringify(JSON.parse(JSON.stringify(data))));
 	}
 
-	onOpen(callback) {
-		this.readyState = this.socket.readyState;
-		this.startHeartbeat();
-		this.socket.addEventListener("open", (event) => {
-			if (callback !== undefined) {
-				callback(event);
-			}
-		})
-	}
 
-	close() { 
-		this.socket.close();
+	onOpen(callback) {
+		console.log("Client connected!");
+		this.startHeartbeat();
 	}
 
 	onMessage(callback) {

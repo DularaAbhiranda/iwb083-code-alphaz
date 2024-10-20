@@ -4,7 +4,7 @@ const serviceServerUrl = process.env.SERVICE_SERVER_URL;
 const jwtSecret = process.env.JWT_SECRET;
 
 async function jwtProvider() {
-	return jwt.sign({}, jwtSecret);
+	//return jwt.sign({}, jwtSecret);
 }
 
 async function serverFetches(url, headers, body, method = "GET") {
