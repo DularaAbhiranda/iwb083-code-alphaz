@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Sidebar from '../../../components/Sidebar';
 import ChatList from '../../../components/ChatList';
 import ChatInterface from '../../../components/ChatInterface';
-import SparkChatIntro from '@/components/loadinginterface';
 
 const Chat = () => {
   const [selectedChat, setSelectedChat] = useState(null); 
@@ -16,7 +15,9 @@ const Chat = () => {
       {selectedChat ? (
         <ChatInterface selectedChat={selectedChat} />
       ) : (
-            <SparkChatIntro />
+        <div className="w-3/4 p-4 flex justify-center items-center">
+          <p className="text-gray-500">Please select a chat to start messaging</p>
+        </div>
       )}
     </div>
   );
